@@ -1,67 +1,48 @@
-# DevToolkit — 免费开发者在线工具站
+# AI提示词精选 — 免费预览站
 
-> 用 GitHub Pages + Jekyll 搭建的轻量变现网站。
-> 免费工具获取流量 → 数字产品变现。
+> 200条高质量中文AI提示词 | GitHub Pages 托管 | 面包多变现
 
-## 快速开始
+## 这是什么
 
-### 1. 环境要求
-- Ruby 2.7+（Jekyll 依赖）
-- Bundler（`gem install bundler`）
+一个 GitHub Pages 静态站点，提供 10 条免费 AI 提示词预览，引导用户购买完整版（200条）。
 
-### 2. 本地运行
+**完整版购买：** 面包多 mbd.pub（链接替换后生效）
+
+## 本地运行
+
 ```bash
-cd 项目目录
 bundle exec jekyll serve
+# 或直接打开 index.html（纯静态，Jekyll 仅用于布局复用）
 ```
-浏览器打开 `http://localhost:4000`
 
-### 3. 部署
+## 部署
+
 推送到 GitHub，在仓库 Settings → Pages 中启用 GitHub Pages。
 
 ## 项目结构
 
 ```
-├── CLAUDE.md            # AI 助手指引
-├── docs/                # 项目标准文档
-│   ├── 00-overview.md   # 项目总览
-│   ├── 01-requirements.md # PRD 需求
-│   ├── 02-tech-spec.md  # 技术规范
-│   ├── 03-design-spec.md# 设计规范
-│   ├── 04-execution-plan.md # 执行计划
-│   ├── 05-monetization.md   # 变现策略
-│   ├── 06-compliance.md     # 合规文档
-│   └── 07-promotion.md      # 推广计划
-├── devlog/              # 开发日志
-├── _layouts/            # Jekyll 布局
-├── _includes/           # 可复用组件
-├── assets/              # 静态资源
-└── index.html           # 首页
+├── index.html           # 产品落地页
+├── free/index.html      # 免费预览（10条提示词）
+├── _config.yml          # Jekyll 配置
+├── _layouts/            # 页面布局
+├── _includes/           # header/footer 组件
+├── assets/              # CSS + JS
+├── 产品-200个AI提示词合集.md   # 完整产品源文件
+├── 面包多详情页文案.md        # 商品上架文案
+├── 知乎推广文章.md            # 推广文章
+├── 封面图设计方案.md          # 封面设计指南
+└── 面包多创作者申请表-填写文案.md # 申请表单
 ```
 
 ## 变现路线
 
 ```
-免费工具（流量入口）
-    → 建立信任
-    → 产品着陆页
-    → Gumroad 购买（自动交付）
+免费预览（10条，GitHub Pages）
+    → 面包多详情页
+    → 购买完整版（¥9.9，PDF交付）
 ```
 
-## 技术栈
-- **托管：** GitHub Pages（免费）
-- **生成器：** Jekyll
-- **样式：** 纯 CSS（零构建）
-- **脚本：** 原生 JavaScript
-- **收款：** Gumroad（数字产品）+ Buy Me a Coffee（打赏）
-
-## 代办清单
-- [ ] 注册 Gumroad 账号
-- [ ] 注册 PayPal 账号
-- [ ] 确定第一款产品方向
-- [ ] 完成网站全部页面
-- [ ] 部署上线
-- [ ] SEO + 推广
-
 ## 许可
-MIT License
+
+完整版 PDF 受版权保护，购买后请勿二次分发。
