@@ -1,0 +1,42 @@
+# 站点配置
+title: "AI提示词精选"
+tagline: "200条高质量中文AI提示词，让AI真正为你工作"
+description: "精选200条高质量中文AI提示词，覆盖写作、编程、学习、办公4大场景。适用于ChatGPT、Claude、Kimi等主流AI工具。免费预览10条，完整版在面包多购买。"
+author: "AI工具探索者"
+email: "zgy518@users.noreply.github.com"
+
+# 域名
+url: "https://zgy518.github.io"
+baseurl: "/ai-prompts"
+
+# 构建
+markdown: kramdown
+permalink: /:title/
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+exclude:
+  - README.md
+  - CLAUDE.md
+  - docs/
+  - devlog/
+  - convert_to_pdf.py
+  - 产品-200个AI提示词合集.md
+  - 封面图设计方案.md
+  - 知乎推广文章.md
+  - 面包多创作者申请表-填写文案.md
+  - 面包多详情页文案.md
+  - GitHub免费预览仓库-README.md
+
+# 导航
+nav:
+  - title: 首页
+    url: /
+  - title: 免费预览
+    url: /free/
+  - title: 购买完整版
+    url: https://mbd.pub
