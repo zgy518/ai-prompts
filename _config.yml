@@ -24,12 +24,11 @@ exclude:
   - CLAUDE.md
   - docs/
   - devlog/
-  - convert_to_pdf.py
-  - 产品-200个AI提示词合集.md
+  - 200个AI提示词：从入门到精通/
+  - AI写论文攻略/
   - 封面图设计方案.md
   - 知乎推广文章.md
   - 面包多创作者申请表-填写文案.md
-  - 面包多详情页文案.md
   - GitHub免费预览仓库-README.md
 
 # 导航
@@ -38,5 +37,7 @@ nav:
     url: /
   - title: 免费预览
     url: /free/
-  - title: 购买完整版
+  - title: 论文攻略
+    url: /paper-guide/free/
+  - title: 购买
     url: https://mbd.pub/o/bread/YZaTl5lxaQ==

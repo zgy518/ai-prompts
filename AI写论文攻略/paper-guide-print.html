@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>AI写论文攻略：从选题到答辩</title>
+<style>
+  @page {
+    size: A4;
+    margin: 20mm;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Microsoft YaHei', 'PingFang SC', 'Noto Sans SC', sans-serif;
+    font-size: 13px;
+    line-height: 1.8;
+    color: #1a1a1a;
+  }
+
+  /* ===== 封面 ===== */
+  .cover-page {
+    page-break-after: always;
+    break-after: page;
+    text-align: center;
+    padding-top: 55mm;
+  }
+  .cover-page .logo {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 24px;
+    border: 3px solid #b8860b;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: #b8860b;
+    font-weight: bold;
+    font-family: serif;
+  }
+  .cover-page h1 {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+    color: #1a1a1a;
+  }
+  .cover-page .subtitle {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 28px;
+  }
+  .cover-page .line {
+    width: 60px;
+    height: 2px;
+    background: #b8860b;
+    margin: 0 auto 28px;
+  }
+  .cover-page .info {
+    font-size: 13px;
+    color: #888;
+    line-height: 2.2;
+  }
+
+  /* ===== 目录 ===== */
+  .toc-page {
+    page-break-after: always;
+    break-after: page;
+  }
+  .toc-page h2 {
+    font-size: 20px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 8px;
+    margin-bottom: 18px;
+  }
+  .toc-page table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  .toc-page th, .toc-page td {
+    border: 1px solid #ddd;
+    padding: 7px 10px;
+    text-align: left;
+  }
+  .toc-page th { background: #f5f5f5; }
+
+  /* ===== 正文通用 ===== */
+  h1.chapter {
+    font-size: 20px;
+    margin: 24px 0 12px;
+    page-break-before: always;
+    break-before: page;
+  }
+  h1.chapter.first { page-break-before: avoid; break-before: avoid; }
+  h2 { font-size: 16px; margin: 20px 0 8px; color: #2c3e50; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+  h3 { font-size: 14px; margin: 16px 0 6px; color: #444; }
+  p { margin-bottom: 8px; }
+
+  .method-box {
+    background: #f8f9fa;
+    border-left: 4px solid #2c3e50;
+    padding: 10px 14px;
+    margin: 12px 0;
+    border-radius: 0 5px 5px 0;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .method-box h3 { margin-top: 0; }
+
+  .prompt-block {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: 11px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    border-left: 3px solid #f59e0b;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .prompt-num { color: #f59e0b; font-weight: 700; }
+
+  .tip-box {
+    background: #fffbeb;
+    border: 1px solid #fcd34d;
+    border-radius: 5px;
+    padding: 10px 14px;
+    margin: 12px 0;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .tip-box strong { color: #92400e; }
+
+  table.data {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 12px;
+  }
+  table.data th, table.data td {
+    border: 1px solid #ddd;
+    padding: 6px 8px;
+    text-align: left;
+  }
+  table.data th { background: #f5f5f5; }
+
+  .end-note {
+    margin-top: 40px;
+    padding-top: 14px;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    color: #999;
+    font-size: 11px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ====== 封面 ====== -->
+<div class="cover-page">
+  <div class="logo">&#x2981;</div>
+  <h1>AI&#x5199;&#x8BBA;&#x6587;&#x653B;&#x7565;</h1>
+  <div class="subtitle">&#x4ECE;&#x9009;&#x9898;&#x5230;&#x7B54;&#x8FA9; &#xB7; &#x5168;&#x6D41;&#x7A0B;AI&#x8F85;&#x52A9;&#x6307;&#x5357;</div>
+  <div class="line"></div>
+  <div class="info">
+    46&#x6761;&#x5B66;&#x672F;&#x5199;&#x4F5C;&#x4E13;&#x7528;&#x63D0;&#x793A;&#x8BCD;<br>
+    6&#x7AE0;&#x65B9;&#x6CD5;&#x8BBA; + &#x5B9E;&#x7528;&#x9644;&#x5F55;<br>
+    &#x9002;&#x7528; ChatGPT / Claude / Kimi / &#x901A;&#x4E49;&#x5343;&#x95EE; / &#x8C46;&#x5305;<br>
+    <br>
+    &#x5B9A;&#x4EF7;&#xFF1A;&yen;14.9
+  </div>
+</div>
+
+<!-- ====== 目录 ====== -->
+<div class="toc-page">
+  <h2>&#x76EE;&#x5F55;</h2>
+  <table>
+    <thead>
+      <tr><th>&#x7AE0;&#x8282;</th><th>&#x5185;&#x5BB9;</th><th>&#x63D0;&#x793A;&#x8BCD;&#x6570;</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>&#x7B2C;&#x4E00;&#x7AE0;</td><td>&#x9009;&#x9898;&#x4E0E;&#x5F00;&#x9898;</td><td>8&#x6761;</td></tr>
+      <tr><td>&#x7B2C;&#x4E8C;&#x7AE0;</td><td>&#x6587;&#x732E;&#x68C0;&#x7D22;&#x4E0E;&#x7EFC;&#x8FF0;</td><td>8&#x6761;</td></tr>
+      <tr><td>&#x7B2C;&#x4E09;&#x7AE0;</td><td>&#x8BBA;&#x6587;&#x5927;&#x7EB2;&#x8BBE;&#x8BA1;</td><td>6&#x6761;</td></tr>
+      <tr><td>&#x7B2C;&#x56DB;&#x7AE0;</td><td>&#x6B63;&#x6587;&#x5199;&#x4F5C;</td><td>10&#x6761;</td></tr>
+      <tr><td>&#x7B2C;&#x4E94;&#x7AE0;</td><td>&#x6DA6;&#x8272;&#x4E0E;&#x964D;&#x91CD;</td><td>8&#x6761;</td></tr>
+      <tr><td>&#x7B2C;&#x516D;&#x7AE0;</td><td>&#x7B54;&#x8FA9;&#x51C6;&#x5907;</td><td>6&#x6761;</td></tr>
+      <tr><td>&#x9644;&#x8D60;</td><td>&#x5B66;&#x672F;Prompt&#x8FDB;&#x9636;&#x6280;&#x5DE7; + &#x9644;&#x5F55;</td><td>5&#x4E2A;&#x6280;&#x5DE7;</td></tr>
+    </tbody>
+  </table>
+  <div class="method-box" style="margin-top:20px">
+    <p><strong>&#x4F60;&#x4E0D;&#x53EA;&#x662F;&#x4E70;&#x63D0;&#x793A;&#x8BCD;&#xFF0C;&#x66F4;&#x662F;&#x5728;&#x5B66;"&#x600E;&#x4E48;&#x5199;&#x8BBA;&#x6587;"&#x3002;</strong></p>
+    <p>&#x6BCF;&#x7AE0;&#x5F00;&#x5934;&#x6709;&#x65B9;&#x6CD5;&#x8BBA;&#x8BB2;&#x89E3;&#xFF0C;&#x7406;&#x89E3;&#x4E86;"&#x4E3A;&#x4EC0;&#x4E48;"&#xFF0C;&#x4F60;&#x624D;&#x80FD;&#x4E3E;&#x4E00;&#x53CD;&#x4E09;&#x3002;</p>
+  </div>
+</div>
+
+<!-- ====== 正文 ====== -->
+
+<h1 class="chapter first">你为什么需要这本指南</h1>
+<p>写论文是每个学生的必修课，但大多数人没学过"怎么写论文"。</p>
+<div class="method-box">
+  <p>&#x274C; 选题选了三个月还是"待定"</p>
+  <p>&#x274C; 文献综述写成文献罗列——A说了X，B说了Y，C说了Z</p>
+  <p>&#x274C; 正文写到一半卡壳，不知道怎么展开</p>
+  <p>&#x274C; 查重率居高不下，降重降到头秃</p>
+  <p>&#x274C; 答辩PPT前一天还在改</p>
+</div>
+<p>大学教了你专业知识，但没教过这些。AI可以帮你——前提是你知道怎么提问。</p>
+<p>本指南<strong>不只给提示词，更教你每个阶段的写作方法论</strong>。你会知道"为什么这样提问"，而不是机械复制粘贴。</p>
+
+<!-- ====== 第一章 ====== -->
+<h1 class="chapter">第一章：选题与开题</h1>
+<div class="method-box">
+  <h3>方法论：好选题的三个标准</h3>
+  <p><strong>1. 有资料来源</strong> — 能找到足够文献支撑（至少20篇核心文献）</p>
+  <p><strong>2. 有研究空间</strong> — 不是被写烂的话题，有一定创新角度</p>
+  <p><strong>3. 有能力完成</strong> — 数据可获取、方法你掌握、篇幅可控</p>
+  <p style="margin-top:8px">AI在选题阶段的作用不是"帮你想题目"，而是帮你<strong>缩小范围、验证可行性、发现研究空白</strong>。</p>
+</div>
+
+<div class="prompt-block"><span class="prompt-num">1. 选题方向探索</span>
+我是一名[专业/年级]学生，需要写一篇[课程论文/毕业论文]。
+我感兴趣的领域是：[填写1-2个关键词]
+请帮我：
+1. 在这个领域内列出10个可能的研究方向
+2. 每个方向标注：研究热度（高/中/低）、资料可得性（容易/一般/困难）、创新空间（大/中/小）
+3. 推荐3个最值得做的方向，说明理由</div>
+
+<div class="prompt-block"><span class="prompt-num">2. 选题可行性评估</span>
+请评估以下论文选题的可行性：
+- 选题：[填写具体题目]
+- 我的条件：[专业、年级、可用的数据库/工具、时间周期]
+- 要求：
+  1. 这个选题有哪些潜在的研究难点？
+  2. 需要用到哪些研究方法？
+  3. 大概需要什么类型的数据？能否获取？
+  4. 如果不可行，请推荐3个调整方向</div>
+
+<div class="prompt-block"><span class="prompt-num">3. 研究问题提炼</span>
+我想研究的主题是：[填写]
+请帮我把这个"主题"转化为具体可研究的"问题"：
+1. 列出3-5个可能的研究子问题
+2. 每个子问题应该满足：可验证、有边界、有学术意义
+3. 用"X对Y的影响机制研究——以Z为例"的格式，给出3个论文题目建议</div>
+
+<div class="prompt-block"><span class="prompt-num">4. 开题报告框架</span>
+请帮我生成一份[本科/硕士]论文开题报告框架：
+- 论文题目：[填写]
+- 要求包含以下部分（每部分给出写作提示）：
+  1. 选题背景与意义（为什么研究这个）
+  2. 国内外研究现状（简述已有研究 + 指出现有不足）
+  3. 研究内容与方法
+  4. 创新点与预期成果
+  5. 研究进度安排
+- 每部分给2-3句话的"写作方向提示"</div>
+
+<div class="prompt-block"><span class="prompt-num">5. 研究背景撰写</span>
+请帮我撰写论文第一章"研究背景"部分：
+- 论文主题：[填写]
+- 要求：
+  1. 从宏观到微观，逐层聚焦到研究问题
+  2. 引用2-3个权威数据或政策背景
+  3. 最终落脚到"本研究要解决什么问题"
+  4. 字数800-1000字
+  5. 学术语言但不要过度晦涩</div>
+
+<div class="prompt-block"><span class="prompt-num">6. 理论框架选择</span>
+我的论文研究方向是：[填写]
+请帮我：
+1. 推荐3-5个可能适用的理论框架
+2. 每个理论简要说明：核心观点、代表人物、为什么适用于我的研究
+3. 推荐最合适的一个，并说明如何将其应用到我的分析中
+注意：如果是本科论文，优先推荐经典、成熟的理论</div>
+
+<div class="prompt-block"><span class="prompt-num">7. 研究假设构建</span>
+基于以下研究问题：[填写]
+请帮我构建3-5个可检验的研究假设：
+- 每个假设应包含：自变量、因变量、预测的关系方向
+- 为每个假设提供：理论基础（为什么会有这个预测）
+- 格式：H1: [自变量]对[因变量]有[正向/负向]影响，因为[理论依据]</div>
+
+<div class="prompt-block"><span class="prompt-num">8. 创新点提炼</span>
+结合以下论文信息，请帮我提炼2-3个创新点：
+- 研究主题：[填写]
+- 研究方法：[填写]
+- 研究对象/数据：[填写]
+- 要求：
+  1. 创新点要具体，不能说"选题新颖"这种套话
+  2. 每个创新点用"与已有研究不同，本研究……"的句式
+  3. 区分"理论创新"和"方法创新"</div>
+
+<!-- ====== 第二章 ====== -->
+<h1 class="chapter">第二章：文献检索与综述</h1>
+<div class="method-box">
+  <h3>方法论：文献综述不是文献罗列</h3>
+  <p>很多人写文献综述就是"A说了X，B说了Y，C说了Z"。这不是综述，是目录。</p>
+  <p>好的文献综述要做到：<strong>归类</strong>（按主题/方法分组）→ <strong>比较</strong>（指出异同和争议）→ <strong>批判</strong>（指出不足=你的研究空间）→ <strong>衔接</strong>（自然引出你的研究）</p>
+</div>
+
+<div class="prompt-block"><span class="prompt-num">9. 关键词扩展</span>
+我的论文主题是：[填写]
+请帮我扩展检索关键词：
+1. 中文关键词：列出10-15个（包括同义词、上下位概念、相关理论名称）
+2. 英文关键词：列出对应的10-15个英文关键词
+3. 推荐检索式：用AND/OR组合写出3条可用于知网/Web of Science的检索式</div>
+
+<div class="prompt-block"><span class="prompt-num">10. 文献分类整理</span>
+请帮我将以下文献进行分类整理：
+- 文献列表：[粘贴论文标题+摘要]
+- 要求：
+  1. 按研究主题分成3-5个类别
+  2. 每个类别下按时间顺序列出文献
+  3. 标注每篇文献的核心观点（一句话）
+  4. 指出不同类别之间的交叉和争议点</div>
+
+<div class="prompt-block"><span class="prompt-num">11. 文献综述框架</span>
+请为以下主题设计一份文献综述的写作框架：
+- 论文主题：[填写]
+- 已有文献数量：约[XX]篇
+- 要求：
+  1. 分成3-5个小节（按主题/方法/观点划分皆可）
+  2. 每小节标注"核心论点和代表性文献"
+  3. 最后设一节"研究述评"：总结已有研究的贡献 + 指出不足 + 引出本研究</div>
+
+<div class="prompt-block"><span class="prompt-num">12. 单篇文献精读</span>
+请帮我精读这篇论文：
+- 标题+摘要：[粘贴]
+- 要求：
+  1. 核心论点：作者的核心观点/结论是什么？
+  2. 研究方法：用了什么数据/方法？样本量？分析方法？
+  3. 理论贡献：在已有研究基础上推进了什么？
+  4. 可借鉴之处：我可以在哪些方面引用/借鉴这篇论文？
+  5. 不足之处：这篇论文有什么局限？</div>
+
+<div class="prompt-block"><span class="prompt-num">13. 文献综述段落撰写</span>
+请将以下文献信息整合成一段文献综述：
+- 主题：[填写]
+- 相关文献：[粘贴3-8篇文献的核心观点]
+- 要求：
+  1. 先概括这一研究方向的整体情况
+  2. 有逻辑地串联各文献的观点（不是罗列）
+  3. 指出这些研究之间的共识和分歧
+  4. 最后指出："然而，现有研究在……方面仍存在不足"
+  5. 字数300-500字</div>
+
+<div class="prompt-block"><span class="prompt-num">14. 参考文献格式</span>
+请将以下文献信息转换为[GB/T 7714 / APA / MLA]标准格式：
+- 文献信息：[粘贴标题、作者、期刊、年份、卷期、页码等]
+- 确保格式完全符合标准要求
+- 如果信息有缺失，标注[信息缺失]并说明缺什么</div>
+
+<div class="prompt-block"><span class="prompt-num">15. 研究空白识别</span>
+基于以下文献综述内容：[粘贴你的综述草稿]
+请帮我识别研究空白：
+1. 目前研究主要集中在哪些方面？
+2. 哪些角度还没被充分研究？
+3. 哪些结论存在争议或矛盾？
+4. 推荐2-3个有潜力的研究切入点</div>
+
+<div class="prompt-block"><span class="prompt-num">16. 国内外研究对比</span>
+请帮我对比[研究主题]的国内外研究现状：
+- 要求用表格呈现：
+  | 维度 | 国内研究 | 国外研究 |
+  | 研究重点 | ... | ... |
+  | 常用方法 | ... | ... |
+  | 理论框架 | ... | ... |
+  | 主要结论 | ... | ... |
+  | 不足之处 | ... | ... |
+- 最后总结：国内研究可以向国外借鉴什么？国外研究忽视了什么中国特色？</div>
+
+<!-- ====== 第三章 ====== -->
+<h1 class="chapter">第三章：论文大纲设计</h1>
+<div class="method-box">
+  <h3>方法论：大纲是论文的骨架</h3>
+  <p>论文不是按"想到的顺序"写的，而是按"逻辑的顺序"</p>
+  <p>每个章节只回答一个问题。如果一章回答了两个问题，拆成两章</p>
+  <p>章节之间有递进关系，不能随意调换顺序</p>
+  <p>标题要见题知意，不要用"相关理论"这种模糊标题</p>
+</div>
+
+<div class="prompt-block"><span class="prompt-num">17. 整体大纲生成</span>
+请帮我设计一份论文大纲：
+- 论文题目：[填写]
+- 论文章节数量：[5-7章]
+- 要求：
+  1. 每章给出标题 + 2-3句话的"本章要回答的核心问题"
+  2. 每章下列出3-5个小节标题
+  3. 标注各章之间的逻辑关系
+  4. 估算每章建议字数（以总字数[X万字]为基准）</div>
+
+<div class="prompt-block"><span class="prompt-num">18. 章节逻辑检查</span>
+请帮我检查这份论文大纲的逻辑是否合理：
+- 大纲：[粘贴]
+- 检查要点：章节顺序是否自然递进？有没有重复内容？有没有遗漏的关键环节？标题是否准确反映内容？
+- 如有问题，请给出具体修改建议</div>
+
+<div class="prompt-block"><span class="prompt-num">19. 某章节详细展开</span>
+我的论文大纲如下：[粘贴大纲]
+请将第[X]章"[章节名]"展开为详细写作提纲：
+1. 分为4-6个小节
+2. 每小节写：核心论点 + 支撑材料 + 预计字数
+3. 小节之间要有逻辑递进</div>
+
+<div class="prompt-block"><span class="prompt-num">20. 理论框架章节设计</span>
+我的论文需要写一章理论基础：
+- 涉及的理论：[填写1-3个理论名称]
+- 要求：每个理论写清提出者/年代/核心观点/核心概念，说明与本研究的关系，构建理论分析框架图（文字描述+ASCII图示），字数3000-5000字</div>
+
+<div class="prompt-block"><span class="prompt-num">21. 对比分析型论文大纲</span>
+我的论文是比较研究：[对象A]与[对象B]的对比。请设计比较型论文大纲：
+- A方案（先分后合）：分别介绍A和B，最后对比
+- B方案（维度假设）：按对比维度分章，每章同时对比A和B
+- 推荐最适合我选题的结构，并给出理由</div>
+
+<div class="prompt-block"><span class="prompt-num">22. 案例分析型论文大纲</span>
+我的论文是案例分析：[案例名称]
+请设计案例分析型论文大纲：
+- 结构：引言→文献综述→案例描述→案例分析→讨论→结论
+- 每项标注具体内容，案例分析部分标注分析维度</div>
+
+<!-- ====== 第四章 ====== -->
+<h1 class="chapter">第四章：正文写作</h1>
+<div class="method-box">
+  <h3>方法论：先完成再完美</h3>
+  <p>正文写作最大的陷阱是"边写边改"。很多人在第一段反复打磨，三天过去了还停在引言。</p>
+  <p>正确策略：<strong>快速出草稿（AI辅助）→ 冷处理（放一天）→ 分轮修改（逻辑→表达→细节）→ AI润色</strong></p>
+</div>
+
+<div class="prompt-block"><span class="prompt-num">23. 引言撰写</span>
+请帮我撰写论文引言部分：
+- 论文题目：[填写]
+- 研究背景关键信息：[填写2-3条]
+- 要求：
+  1. 第一段：现实/政策背景，引出研究主题
+  2. 第二段：简要提及已有研究，指出不足
+  3. 第三段：说明本研究要做什么、用什么方法
+  4. 第四段：概述论文结构
+  5. 总字数800-1200字，每段之间要有过渡句</div>
+
+<div class="prompt-block"><span class="prompt-num">24. 段落扩写</span>
+请将以下要点扩写成完整的学术段落：
+- 核心观点：[一句话概括]
+- 支撑论据：[列出2-3个论据/数据/引用]
+- 要求：学术语言但避免套话，论据之间有逻辑连接词，段落长度200-400字，结尾句承上启下</div>
+
+<div class="prompt-block"><span class="prompt-num">25. 数据分析描述</span>
+请帮我撰写数据分析部分：
+- 分析方法：[填写：描述性统计/回归分析/内容分析等]
+- 关键发现：[填写3-5条核心数据结果]
+- 要求：先说明方法再呈现结果，不要只重复数字要解释"这意味着什么"，重要结果在段首标注，不显著的结果也要如实报告</div>
+
+<div class="prompt-block"><span class="prompt-num">26. 论证展开（三段论）</span>
+请用"观点-论据-分析"三段论结构撰写以下内容：
+- 观点：[填写]
+- 可用论据：[填写]
+- 要求：先明确提出观点→给出论据支撑→分析论据如何支持观点（最关键）→回应可能的反驳</div>
+
+<div class="prompt-block"><span class="prompt-num">27. 案例描述</span>
+请帮我撰写案例描述部分：
+- 案例背景：[填写]
+- 要求：客观描述不加评价（评价放分析部分），按时间线或逻辑线组织，突出与研究问题相关的信息，字数500-800字</div>
+
+<div class="prompt-block"><span class="prompt-num">28. 讨论部分撰写</span>
+请帮我撰写论文讨论部分：
+- 主要发现：[列出3-5条]
+- 已有研究结论：[列出相关文献核心发现]
+- 要求：逐一讨论你的发现与已有研究的关系，如果一致解释为什么，如果不一致分析可能原因，讨论理论贡献和实践启示，坦诚说明研究局限</div>
+
+<div class="prompt-block"><span class="prompt-num">29. 结论撰写</span>
+请帮我撰写论文结论部分：
+- 研究问题：[填写]
+- 主要发现：[填写3-5条]
+- 要求：先回顾研究问题 → 总结核心发现（凝练，非重复） → 说明理论贡献和实践启示 → 指出研究局限和未来方向 → 最后一段有"收束感" → 总字数600-900字</div>
+
+<div class="prompt-block"><span class="prompt-num">30. 过渡段撰写</span>
+请为以下两个章节/段落写过渡段：
+- 上一部分的内容：[一句话概括]
+- 下一部分要写：[一句话概括]
+- 要求：先简要总结前文 → 指出前文的"留白" → 自然引出下文 → 2-4句话即可</div>
+
+<div class="prompt-block"><span class="prompt-num">31. 摘要撰写</span>
+请帮我撰写论文摘要：
+- 研究背景+目的+方法+主要发现+结论与启示各用1-2句话
+- 总字数200-300字，不出现"本文""笔者"，关键词3-5个</div>
+
+<div class="prompt-block"><span class="prompt-num">32. 引言-文献-结论联动检查</span>
+我的论文有三部分内容如下，请检查是否逻辑闭环：
+- 引言提出的研究问题：[填写]
+- 文献综述指出的研究空白：[填写]
+- 结论回答的问题：[填写]
+- 检查：引言提的问题结论有没有回答？文献综述指出的空白有没有填补？如果没有闭环，指出断裂点</div>
+
+<!-- ====== 第五章 ====== -->
+<h1 class="chapter">第五章：润色与降重</h1>
+<div class="method-box">
+  <h3>方法论：降重的本质是"消化再表达"</h3>
+  <p>无效操作：A词换B词、主动句改被动句（在智能查重面前基本无效）</p>
+  <p>有效策略：<strong>理解后用自己的话重写</strong>（最根本）→ 改变句式结构（句子重组）→ 合并或拆分段落（改变信息组织方式）→ 增加自己的分析（引用后多写"这意味着"）</p>
+</div>
+
+<div class="prompt-block"><span class="prompt-num">33. 学术语言润色</span>
+请帮我润色以下段落，提升学术性：
+- 原文：[粘贴]
+- 要求：保持原意不变，提升用词准确性（"很多"→"大量"，"因为"→"归因于"），减少口语化表达，保持句子长度适中，给出修改版+修改说明</div>
+
+<div class="prompt-block"><span class="prompt-num">34. 降重改写</span>
+请帮我改写以下段落以降低重复率：
+- 原文：[粘贴]
+- 要求：保持学术原意不变，不要只是同义词替换要改变句子结构，可以合并或拆分句子，不要引入原文没有的信息或观点，提供3个不同改写版本并标注"改变策略"（句式重组/信息重构/视角转换）</div>
+
+<div class="prompt-block"><span class="prompt-num">35. 逻辑流畅度检查</span>
+请检查以下段落的逻辑流畅度：
+- 段落：[粘贴]
+- 检查：句间是否有逻辑跳跃？是否有重复啰嗦？连接词是否得当？段落是否有统一的中心思想？给出修改版</div>
+
+<div class="prompt-block"><span class="prompt-num">36. 长句拆分</span>
+以下长句过于复杂，请拆分：
+- 原句：[粘贴]
+- 要求：拆分为2-4个短句，保持逻辑关系不变，过渡自然</div>
+
+<div class="prompt-block"><span class="prompt-num">37. 避免学术套话</span>
+以下段落存在"学术套话"问题（空洞漂亮话），请帮我改写：
+- 原文：[粘贴]
+- 要求：删除"随着经济社会的发展""在新形势新背景下"等无信息量套话，删除"具有重要理论意义和现实意义"等无需论证的断言，用具体信息替代模糊表述，标注删了什么及原因</div>
+
+<div class="prompt-block"><span class="prompt-num">38. 摘要润色</span>
+请帮我润色论文摘要：
+- 摘要：[粘贴]
+- 要求：每个字都有信息量，第一句就说清"研究了什么发现了什么"，学术关键词密度要高，不出现"本文""本研究"以外的自我指涉词</div>
+
+<div class="prompt-block"><span class="prompt-num">39. 全篇一致性检查</span>
+请检查以下文本的一致性：
+- 文本：[粘贴]
+- 检查：术语是否前后一致？时态是否一致？人称是否一致（统一用"本文"或"本研究"）？中英文标点是否混用？数字格式是否统一？</div>
+
+<div class="prompt-block"><span class="prompt-num">40. 查重预检</span>
+以下段落我怀疑重复率较高，请用"重写"策略帮我降重：
+- 原文：[粘贴]
+- 要求：我先用我的理解把这段话说一遍[粘贴你的复述]，请基于我的理解版本润色成正式学术表达，确保不会与原文有连续13字以上的重复</div>
+
+<!-- ====== 第六章 ====== -->
+<h1 class="chapter">第六章：答辩准备</h1>
+<div class="method-box">
+  <h3>方法论：答辩不是"汇报"，是"答辩"</h3>
+  <p>评委已读过你的论文，不需要你再念一遍</p>
+  <p>陈述控制在5-8分钟，问答10-15分钟</p>
+  <p>PPT不是Word搬家，每页最多3条要点</p>
+  <p>准备比表现更重要：提前预判10个最可能被问到的问题</p>
+</div>
+
+<div class="prompt-block"><span class="prompt-num">41. 答辩陈述稿</span>
+请帮我撰写答辩陈述稿：
+- 论文题目：[填写]
+- 答辩时长：[5/8/10分钟]
+- 要求：结构为研究背景(30秒)→研究问题(30秒)→研究方法(1分钟)→主要发现(2-3分钟)→创新点与贡献(1分钟)→不足与展望(30秒)，用口语化的学术语言（能说出来的话），每段标注时间，避免背诵感</div>
+
+<div class="prompt-block"><span class="prompt-num">42. 答辩PPT大纲</span>
+请帮我设计答辩PPT大纲：
+- 论文题目：[填写]
+- PPT页数：[12-15页]
+- 要求：每页写页面标题+核心要点（3条以内）+建议配图类型，结构为封面→目录→研究背景→研究问题→方法→核心发现→创新与贡献→不足与展望→致谢，数据页建议图表类型</div>
+
+<div class="prompt-block"><span class="prompt-num">43. 预判问答</span>
+请根据我的论文信息预判答辩评委可能问的问题：
+- 论文题目+摘要：[粘贴]
+- 研究方法+主要结论：[填写]
+- 要求：列出10-15个可能被问到的问题，按提问概率排序，分类型（方法论/结果解释/延伸问题），每个问题给出3-5个回答要点</div>
+
+<div class="prompt-block"><span class="prompt-num">44. 回答话术模板</span>
+给以下答辩高频问题写回答话术：
+问题：[如"你的研究有什么创新？"/"样本量是不是太少了？"/"这个结论能推广吗？"]
+要求：先肯定问题合理性 → 直接回答不绕圈子 → 如果确实有局限坦诚承认+说明为何现有条件下最优+未来改进 → 用"具体来说……"引出细节支撑</div>
+
+<div class="prompt-block"><span class="prompt-num">45. 复杂方法通俗解释</span>
+我的论文用了比较专业的研究方法：[填写方法名]
+请用通俗语言解释：用一句话比喻解释（让完全不懂的人能懂）→ 用3-5句话说明学术原理 → 说明为什么选这个方法 → 说明适用条件和局限性</div>
+
+<div class="prompt-block"><span class="prompt-num">46. 致谢词</span>
+请帮我撰写论文致谢部分：
+- 要求：真诚不套路不要套模板，感谢导师（如有具体事例加入描述），感谢同学/朋友/家人，最后一段表达求学感悟，500-800字，风格温暖但不煽情</div>
+
+<!-- ====== 附赠 ====== -->
+<h1 class="chapter">附赠：学术Prompt进阶技巧</h1>
+
+<div class="tip-box">
+  <strong>技巧1：角色设定的精确度决定输出质量</strong><br>
+  &#x274C; 模糊：<code>你是一位教授</code><br>
+  &#x2705; 精确：<code>你是一位在[具体领域]有15年研究经验的教授，研究方向是[X]，擅长[Y]研究方法，已发表50+篇SSCI/CSSCI论文</code><br>
+  原则：给AI的"人设"越具体，输出越专业。
+</div>
+
+<div class="tip-box">
+  <strong>技巧2：分层提问法</strong><br>
+  不要一次性让AI写一整章。正确做法：第一轮生成框架 → 第二轮逐小节生成 → 第三轮整体润色和逻辑检查。每轮质量都比一轮搞定高很多。
+</div>
+
+<div class="tip-box">
+  <strong>技巧3：提供"上下文锚点"</strong><br>
+  AI不知道你的论文整体在做什么，每次提问先给上下文：<br>
+  <code>我的论文题目是[X]，研究方法是[Y]，主要数据来源是[Z]。目前已完成第1-3章，现在要写第4章[章节名]。这一章的目的：[一句话]</code>
+</div>
+
+<div class="tip-box">
+  <strong>技巧4：使用"思维链"引导分析</strong><br>
+  在需要AI做深层分析时加一句：<code>请一步步分析，先……再……最后……</code> ——这会让AI展现推理过程，而不是直接给结论。
+</div>
+
+<div class="tip-box">
+  <strong>技巧5：反向质控</strong><br>
+  拿到AI输出后用这个提示词质控：<code>请以一位严格审稿人的身份，批判性地审视以下内容：1.哪些论证不够充分？2.哪些地方有逻辑跳跃？3.有没有学术硬伤？4.如果是你，会在哪些地方追问？</code>
+</div>
+
+<!-- ====== 附录 ====== -->
+<h1 class="chapter">附录</h1>
+
+<h2>A. 论文写作时间规划表（参考）</h2>
+<table class="data">
+  <tr><th>阶段</th><th>任务</th><th>建议时间</th></tr>
+  <tr><td>选题</td><td>确定题目 + 开题报告</td><td>2-3周</td></tr>
+  <tr><td>文献</td><td>检索 + 阅读 + 综述</td><td>3-4周</td></tr>
+  <tr><td>研究设计</td><td>方法论 + 工具准备</td><td>1-2周</td></tr>
+  <tr><td>数据收集</td><td>问卷/实验/爬取</td><td>2-4周</td></tr>
+  <tr><td>数据分析</td><td>统计/编码</td><td>1-2周</td></tr>
+  <tr><td>初稿写作</td><td>按大纲写正文</td><td>3-4周</td></tr>
+  <tr><td>修改</td><td>多轮修改 + 降重</td><td>2-3周</td></tr>
+  <tr><td>定稿</td><td>排版 + 查重 + 提交</td><td>1周</td></tr>
+  <tr><td>答辩</td><td>PPT + 演练 + 答辩</td><td>1-2周</td></tr>
+</table>
+
+<h2>B. 常用学术工具推荐</h2>
+<table class="data">
+  <tr><th>工具</th><th>用途</th><th>备注</th></tr>
+  <tr><td>知网/万方/维普</td><td>中文文献检索</td><td>学校图书馆免费</td></tr>
+  <tr><td>Web of Science / Scopus</td><td>英文文献检索</td><td>需学校订阅</td></tr>
+  <tr><td>Google Scholar</td><td>综合检索 + 引用追踪</td><td>免费</td></tr>
+  <tr><td>Zotero</td><td>文献管理</td><td>免费开源，强烈推荐</td></tr>
+  <tr><td>DeepL</td><td>英文翻译和润色</td><td>比Google翻译自然</td></tr>
+  <tr><td>Grammarly</td><td>英文语法检查</td><td>基础版免费</td></tr>
+  <tr><td>知云文献翻译</td><td>PDF翻译阅读</td><td>免费</td></tr>
+</table>
+
+<div class="end-note">
+  <p>本指南每一条提示词都经过实测。但AI是工具，你是作者。</p>
+  <p>论文的核心——你的观点、你的分析、你的判断——永远来自你自己。</p>
+  <p>AI帮你省下的时间，应该用来做更重要的事：深度思考。</p>
+</div>
+
+</body>
+</html>

@@ -2,11 +2,14 @@
 
 > 200条高质量中文AI提示词 | GitHub Pages 托管 | 面包多变现
 
-## 这是什么
+## 产品线
 
-一个 GitHub Pages 静态站点，提供 10 条免费 AI 提示词预览，引导用户购买完整版（200条）。
+| 产品 | 价格 | 内容 |
+|------|------|------|
+| 200个AI提示词：从入门到精通 | ¥9.9 | 200条提示词，覆盖写作/编程/学习/办公 |
+| AI写论文攻略 | ¥14.9 | 46条学术提示词 + 6章方法论，从选题到答辩 |
 
-**完整版购买：** [面包多](https://mbd.pub/o/bread/YZaTl5lxaQ==)
+**完整版购买：** [面包多店铺](https://mbd.pub/o/bread/YZaTl5lxaQ==)
 
 ## 本地运行
 
@@ -22,17 +25,26 @@ bundle exec jekyll serve
 ## 项目结构
 
 ```
-├── index.html           # 产品落地页
-├── free/index.html      # 免费预览（10条提示词）
-├── _config.yml          # Jekyll 配置
-├── _layouts/            # 页面布局
-├── _includes/           # header/footer 组件
-├── assets/              # CSS + JS
-├── 产品-200个AI提示词合集.md   # 完整产品源文件
-├── 面包多详情页文案.md        # 商品上架文案
-├── 知乎推广文章.md            # 推广文章
-├── 封面图设计方案.md          # 封面设计指南
-└── 面包多创作者申请表-填写文案.md # 申请表单
+├── index.html                 # 产品落地页（双产品矩阵）
+├── free/index.html            # 免费预览（10条提示词）
+├── paper-guide/free/          # 论文攻略免费预览（6条）
+├── _config.yml                # Jekyll 配置
+├── _layouts/                  # 页面布局
+├── _includes/                 # header/footer 组件
+├── assets/                    # CSS + JS
+├── 200个AI提示词：从入门到精通/   # 产品 #1 全部源文件
+│   ├── 产品-200个AI提示词合集.md
+│   ├── 200个AI提示词-从入门到精通.html  (打印→PDF)
+│   ├── cover.html             # 封面图
+│   ├── 面包多详情页文案.md      # 上架文案
+│   └── convert_to_pdf.py      # PDF 转换脚本
+├── AI写论文攻略/               # 产品 #2 全部源文件
+│   ├── 产品-AI写论文攻略.md
+│   ├── paper-guide-print.html (打印→PDF)
+│   ├── cover-paper-guide.html # 封面图
+│   └── 面包多详情页文案-论文攻略.md
+├── 面包多创作者申请表-填写文案.md  # 申请表单
+└── 知乎推广文章.md             # 推广文章
 ```
 
 ## 变现路线
